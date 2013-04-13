@@ -1,0 +1,10 @@
+# Switch debugging
+DEBUG = True
+TESTING = True
+
+# MongoDB Connection
+MONGODB_DATABASE = 'combat'
+MONGODB_HOST = '127.0.0.1'
+MONGODB_PORT = 9876
+MONGODB_USERNAME = None
+MONGODB_PASSWORD = None
