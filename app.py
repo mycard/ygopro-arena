@@ -11,11 +11,12 @@ app.config.from_object('conf')
 db = MongoKit(app)
 db.register([Duel, ])
 
+
 @app.route('/duels', methods=['GET', 'POST'])
 def duels():
     if request.method == 'GET':
         duels = db.Duel.find().limit(10)
-        return "[%s]" % ",".join(map(lambda x:x.to_json(), duels))
+        return "[%s]" % ",".join(map(lambda x: x.to_json(), duels))
     elif request.method == 'POST':
         try:
             json = request.form['json']
@@ -24,6 +25,7 @@ def duels():
             return str(duel._id)
         except ValidationError:
             abort(400)
+
 
 @app.route('/duels/<duel_id>')
 def single(duel_id):

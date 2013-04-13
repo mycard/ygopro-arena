@@ -1,8 +1,8 @@
 from flask.ext.mongokit import Document
 
 
-main_deck_validator = lambda x:len(x) >= 40 and len(x) <= 60
-extra_deck_validator = lambda x:len(x) >= 0 and len(x) <= 15
+main_deck_validator = lambda x: len(x) >= 40 and len(x) <= 60
+extra_deck_validator = lambda x: len(x) >= 0 and len(x) <= 15
 
 
 class Duel(Document):
