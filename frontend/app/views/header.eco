@@ -1,0 +1,16 @@
+<div class="masthead">
+  <h3 class="muted">MyCard Combat</h3>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li class="active"><a href="#/home">动态</a></li>
+          <li><a href="#/duels">战绩</a></li>
+          <li><a href="#/decks">卡组</a></li>
+          <li><a href="#/rank">排行</a></li>
+          <li><a href="#/about">关于</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

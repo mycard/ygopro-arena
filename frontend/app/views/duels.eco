@@ -1,0 +1,42 @@
+<form id="duel-query" class="form-search">
+  <input type="text" class="input-xxlarge search-query large-query" placeholder="输入用户名查询战绩" value="<%= @username %>">
+</form>
+<% if not @duels.length: %>
+<div class="alert">
+    <strong>嗯哼！</strong>没有找到相关的决斗记录，请重新查询。
+</div>
+<% else: %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>胜利者</th>
+      <th></th>
+      <th>失败者</th>
+      <th>胜利原因</th>
+      <th>胜利者积分</th>
+      <th>失败者积分</th>
+      <th>决斗回放</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for duel in @duels: %>
+    <% if duel.winner: %>
+    <% winner = 'x' %>
+    <% loser = 'y' %>
+    <% else: %>
+    <% winner = 'y' %>
+    <% loser = 'x' %>
+    <% end %>
+    <tr>
+      <td><%= duel['dueler_' + winner] %></td>
+      <td>VS</td>
+      <td><%= duel['dueler_' + loser] %></td>
+      <td><%= duel.reason %></td>
+      <td><%= duel['credit_' + winner] %></td>
+      <td><%= duel['credit_' + loser] %></td>
+      <td><a href="<%= duel.replay %>">查看回放</a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

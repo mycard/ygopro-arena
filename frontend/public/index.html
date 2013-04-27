@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Mycard Combat</title>
+  <link rel="stylesheet" href="/application.css" type="text/css" charset="utf-8">
+  <script src="/application.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    var jQuery  = require("jqueryify");
+    var exports = this;
+    jQuery(function(){
+      var App = require("index");
+      exports.app = new App({el: $("#wrapper")});
+    });
+    $(window).load(function(){
+      $(".nav li").removeClass()
+      $(".nav li").has($('a[href="' + location.hash + '"]')).addClass('active')
+    })
+  </script>
+</head>
+<body>
+  <div id="wrapper" class="container">
+  </div>
+</body>
+</html>
