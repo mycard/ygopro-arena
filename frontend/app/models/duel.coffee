@@ -1,6 +1,6 @@
 Spine   = require('spine')
 
-Spine.Model.host = "http://127.0.0.1:5000"
+Spine.Model.host = "http://combat-api.torriacg.org"
 
 class Duel extends Spine.Model
     @configure "Duel", "dueler_x", "dueler_y", "winner", "reason",

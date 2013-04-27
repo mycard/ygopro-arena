@@ -1,6 +1,6 @@
 # Switch debugging
-DEBUG = True
-TESTING = True
+DEBUG = False
+TESTING = False
 
 # MongoDB Connection
 MONGODB_DATABASE = 'combat'
