@@ -1,0 +1,505 @@
+# !! PLEASE FOLLOW THIS FORMAT !!
+#
+# deck-name-with-strike:
+# - trans: 中文名
+#   parent: deck-name-with-strike
+# - set: (hex flag)
+#   count: (int)
+# - name: keyword
+#   count: (int)
+# - card_type: type1 type2 ...
+#   count: (int)
+# - attribute: attr1 attr2 ...
+#   count: (int)
+# - race: race1 race2 ...
+#   count: (int)
+#
+
+hieratic:
+- trans: 圣刻
+- set: 0x69
+  count: 3
+hieratic-gishki:
+- trans: 圣刻遗式
+  parent: Hieratic
+- card_type: ritual spell
+  count: 3
+- name: 邪遗式熏风乌贼怪
+  count: 1
+inzektor:
+- trans: 甲虫装机
+- set: 0x56
+  count: 6
+windup-inzektor:
+- trans: 发条甲虫
+  parent: inezetor
+- name: 发条猎人
+  count: 1
+- name: 发条鼠
+  count: 1
+- name: 发条空母 发条巨舰
+  count: 1
+windup:
+- trans: 发条
+- set: 0x58
+  count: 6
+darkworld:
+- trans: 暗黑界
+- set: 0x6
+  count: 6
+skill-drain-darkworld:
+- trans: 技抽暗黑界
+  parent: darkworld
+- name: 技能吸收
+  count: 2
+agent:
+- trans: 代行
+- name: 神圣球体
+  count: 3
+tg-agent:
+- trans: TG代行
+  parent: agent
+- name: 科技属 突击兵
+  count: 1
+- name: 科技属 狼人
+  count: 1
+herald-agent:
+- trans: 神光代行
+  parent: agent
+- name: 神光之宣告者
+  count: 1
+sin:
+- trans: 代行
+- set: 0x23
+  count: 3
+- card_type: field spell
+  count: 3
+skill-drain-sin:
+- trans: 技抽罪
+  parent: sin
+- name: 技能吸收
+  count: 2
+gravekeeper-sin:
+- trans: 守墓罪
+  parent: sin
+- name: 守墓
+  count: 2
+geartown-sin:
+- trans: 齿车罪
+  parent: sin
+- name: 齿车街
+  count: 2
+eh:
+- trans: 元素英雄
+- set: 0x3008
+  count: 4
+lightdual-herobeat:
+- trans: 光二HB
+  parent: eh
+- name: 二重电光
+  count: 2
+junk-doppel:
+- trans: 废二
+- name: 废品同调士
+  count: 2
+- name: 二重身战士
+  count: 2
+road-junk-doppel:
+- trans: 王道废二
+  parent: junkdoppel
+- name: 王道战士
+  count: 2
+tg-junk-doppel:
+- trans: TG废二
+  parent: junkdoppel
+- name: 科技属 突击兵
+  count: 1
+- name: 科技属 狼人
+  count: 1
+gishki:
+- trans: 遗式
+- set: 0x3a
+  count: 4
+- card_type: ritual spell
+  count: 1
+handcontrol-gishki:
+- trans: 控手遗式
+  parent: gishki
+- name: 邪遗式熏风乌贼怪
+  count: 2
+level10-gishki:
+- trans: Lv10遗式
+  parent: gishki
+- name: 邪遗式魂魄巨灵
+  count: 2
+icebarrier:
+- trans: 冰结界
+- set: 0x2f
+  count: 6
+reborn-icebarrier:
+- trans: 苏生冰结界
+  parent: icebarrier
+- name: 冰结界的传道师
+  count: 2
+monarch:
+- trans: 帝
+- name: 邪帝
+  count: 3
+frog-monarch:
+- trans: 青蛙帝
+  parent: monrach
+- name: 黄泉青蛙
+  count: 1
+dimension-monrach:
+- trans: 次元帝
+  parent: monrach
+- name: 异次元的侦察机
+  count: 1
+exodia:
+- trans: 被封印者
+- set: 0x40
+  count: 3
+library-exodia:
+- trans: 书抽
+  parent: exodia
+- name: 王立魔法图书馆
+  count: 2
+dragon-exodia:
+- trans: 龙抽
+  parent: exodia
+- name: 调和的宝札
+  count: 2
+bamboo-exodia:
+- trans: 竹光抽
+  parent: exodia
+- name: 黄金色的竹光
+  count: 2
+underdog-exodia:
+- trans: 凡骨抽
+  parent: exodia
+- name: 凡人的意志
+  count: 1
+rabbit-xyz:
+- trans: 兔超量
+- name: 救援兔
+  count: 2
+jurrac-evilswarm-rabbit:
+- trans: 侏罗纪入魔兔
+  parent: rabbitxyz
+- race: dinosaur
+  count: 2
+- set: 0xa
+  count: 2
+jurrac-ninja-rabbit:
+- trans: 侏罗纪忍者兔
+  parent: rabbitxyz
+- race: dinosaur
+  count: 2
+- name: 忍法 超变化之术
+  count: 2
+evilswarm-rabbit:
+- trans: 暗轴入魔兔
+  parent: rabbitxyz
+- set: 0xa
+  count: 4
+- name: 侵略的泛发感染
+  count: 1
+sixsamurai:
+- trans: 六武众
+- set: 0x3d
+  count: 4
+asceticism-sixsamurai:
+- trans: 荒行六武
+  parent: sixsamurai
+- name: 六武众的荒行
+  count: 2
+waterfire-sixsamurai:
+- trans: 水火六武
+  parent: sixsamurai
+- name: 真六武众 瑞穗
+  count: 1
+- name: 真六武众 竹刀
+  count: 1
+infernity:
+- trans: 永火
+- set: 0xb
+  count: 4
+gladiator:
+- trans: 剑斗兽
+- set: 0x19
+  count: 4
+alive-gladiator:
+- trans: 到来斗
+  parent: gladiator
+- name: 英雄到来
+  count: 1
+bird-gladiator:
+- trans: 鸟斗
+  parent: gladiator
+- name: 神鸟攻击
+  count: 1
+x-saber:
+- trans: X-剑士
+- set: 0x100d
+  count: 6
+- set: 0x300d
+  count: 2
+kuraz-sword:
+- trans: 光帝剑
+- name: 光帝 克赖斯
+  count: 1
+- name: 凤凰剑圣 基亚·弗里德
+  count: 1
+zombie:
+- trans: 不死
+- race: zombie
+  count: 6
+- name: 僵尸带菌者
+  count: 1
+countdown:
+- trans: 倒计时
+- name: 终焉的倒计时
+  count: 2
+evilswarm:
+- trans: 入魔
+- set: 0xa
+  count: 6
+deck-destruction:
+- trans: 削卡
+- name: 日全食之书
+  count: 1
+- name: 太阳之书
+  count: 1
+worm-deck-destruction:
+- trans: 虫削
+  parent: deckdestruction
+- name: 针虫
+  count: 2
+demension-deck-destruction:
+- trans: 次元削
+  parent: deckdestruction
+- name: 次元裂缝
+  count: 1
+bf:
+- trans: 黑羽
+- set: 0x33
+  count: 6
+whirlwind-bf:
+- trans: 旋风黑羽
+  parent: bf
+- name: 黑旋风
+  count: 1
+grave-bf:
+- trans: 墓地黑羽
+  parent: bf
+- name: 黑羽-大旆之伐由
+  count: 2
+morphtronic:
+- trans: 变形斗士
+- set: 0x26
+  count: 4
+- name: 动力工具龙
+  count: 2
+simochi:
+- trans: 副作用
+- name: 药物的副作用
+  count: 2
+fortunelady:
+- trans: 命运女郎
+- set: 0x31
+  count: 4
+vylon:
+- trans: 大日
+- set: 0x30
+  count: 4
+kayest-vylon:
+- trans: 波纹大日
+  parent: vylon
+- name: 静寂之杖-波纹
+  count: 2
+twinsword-vylon:
+- trans: 双剑大日
+  parent: vylon
+- name: 闪光之双剑-雷震
+  count: 2
+karakuri:
+- trans: 机巧
+- set: 0x11
+  count: 5
+machina-karakuri:
+- trans: 机甲机巧
+  parent: karakuri
+- name: 机甲
+  count: 3
+gear:
+- trans: 齿轮
+- set: 0x51
+  count: 4
+offering-gear:
+- trans: 血代齿轮
+  parent: gear
+- name: 血之代偿
+  count: 2
+machina-gear:
+- trans: 机甲齿轮
+  parent: gear
+- name: 机甲
+  count: 3
+dragon:
+- trans: 龙族
+- race: dragon
+  count: 6
+- name: 真红眼暗铁龙
+  count: 1
+dimension-dragon:
+- trans: 次元龙族
+  parent: dragon
+- name: 日食翼龙
+  count: 2
+lightsworn:
+- trans: 光道
+- set: 0x38
+  count: 6
+chaos-lightsworn:
+- trans: 混沌光道
+  parent: lightsworn
+- attribute: dark
+  count: 4
+lightray-lightsworn:
+- trans: 光化光道
+  parent: lightsworn
+- name: 光芒使者
+  count: 3
+laval:
+- trans: 熔岩
+- set: 0x39
+  count: 4
+constellar:
+- trans: 星圣
+- set: 0x53
+  count: 4
+gravekeeper:
+- trans: 守墓
+- set: 0x2e
+  count: 6
+cloudian:
+- trans: 云魔物
+- set: 0x18
+  count: 4
+amazoness:
+- trans: 亚马逊
+- set: 0x4
+  count: 6
+counter-fairy:
+- trans: 反击天使
+- race: fairy
+  count: 4
+- card_type: counter trap
+  count: 7
+crystal-beast:
+- trans: 宝玉兽
+- set: 0x34
+  count: 4
+gem-knight:
+- trans: 宝石骑士
+- set: 0x1047
+  count: 5
+- name: 宝石骑士融合
+  count: 1
+gusto:
+- trans: 薰风
+- set: 0x10
+  count: 6
+darkwind-gusto:
+- trans: 风暗薰风
+  parent: gusto
+- name: 暗黑神鸟 斯摩夫
+  count: 1
+psychic-gusto:
+- trans: 念动力薰风
+  parent: gusto
+- race: psychic
+  count: 7
+koaki-meiru:
+- trans: 核成
+- set: 0x1d
+  count: 6
+scrap:
+- trans: 废铁
+- name: 废铁奇美拉
+  count: 2
+worm:
+- trans: 异虫
+- set: 0x3e
+  count: 4
+ninja:
+- trans: 忍者
+- set: 0x2b
+  count: 6
+nordic:
+- trans: 忍者
+- set: 0x42
+  count: 6
+volcanic:
+- trans: 火山
+- set: 0x32
+  count: 6
+cyber:
+- trans: 电子龙
+- name: 电子龙
+  count: 4
+batteryman:
+- trans: 电池人
+- name: 电池人
+  count: 4
+- name: 漏电
+  count: 1
+wight:
+- trans: 白骨
+- name: 白骨
+  count: 6
+valhalla-fairy:
+- trans: 神居天使
+- name: 神之居城
+  count: 2
+- level: 5+
+  count: 1
+naturia:
+- trans: 自然
+- set: 0x2a
+  count: 6
+chainburn:
+- trans: 连锁削血
+- name: 连锁暴击
+  count: 1
+evilhero:
+- trans: 邪心英雄
+- set: 0x6008
+  count: 4
+dh:
+- trans: 命运英雄
+- set: 0xc008
+  count: 6
+dragoon:
+- trans: 龙骑士
+  parent: dh
+- name: 龙骑士 D-终
+  count: 1
+fabled:
+- trans: 魔轰神
+- set: 0x35
+  count: 7
+dragunity:
+- trans: 龙骑兵团
+- set: 0x29
+  count: 4
+assault-dragunity:
+- trans: 龙骑星爆
+  parent: dragunity
+- name: 爆裂模式
+  count: 1
+rank6-dragunity:
+- trans: R6龙骑
+  parent: dragunity
+- name: 圣刻龙王-阿图姆龙王
+  count: 1
