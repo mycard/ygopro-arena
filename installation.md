@@ -71,3 +71,9 @@ Then make a soft link and reload nginx configuration to enable it:
 $ sudo ln -s /etc/nginx/sites-available/combat /etc/nginx/sites-enabled/combat
 $ sudo service nginx reload
 ```
+
+Ready for production ?
+------------------------
+
+You **must** set `DEBUG` and `TESTING` in `conf.py` to `False`, otherwise your
+server will exposed to high risk.
