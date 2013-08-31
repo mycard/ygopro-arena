@@ -7,7 +7,7 @@ manager = Manager(app)
 
 
 @manager.command
-def updatedeck():
+def updatedecks():
     """update decks according cards.sqlite"""
     deckreco = DeckReco()
     rules = deckreco.rules + [FakeDeckRule(), ]

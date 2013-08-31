@@ -13,6 +13,15 @@ $ cd /somewhere/mycard_combat
 $ sudo pip install -r requirements.txt
 ```
 
+Some manual works
+---------------------
+
+1. Put `cards.cdb` of ygopro in `/combat/misc` as `cards.sqlite` for deck
+   recognization. 
+2. Fill in mongodb connection fields in `conf.py`.
+3. Enter `/somewhere/mycard_combat`.
+4. Run `python manage.py updatedecks`.
+
 Configure uwsgi
 ------------------
 
