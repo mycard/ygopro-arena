@@ -60,5 +60,5 @@ Then make a soft link and reload nginx configuration to enable it:
 
 ```
 $ sudo ln -s /etc/nginx/sites-available/combat /etc/nginx/sites-enabled/combat
-$ sudo servic nginx reload
+$ sudo service nginx reload
 ```
