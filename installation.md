@@ -52,7 +52,7 @@ Write `/etc/nginx/sites-avaliable/combat` as following:
 ```
 server {
     listen 80;
-    server_name example.com
+    server_name example.com;
     error_log /var/log/nginx/combat_error;
 
     location / {
@@ -76,4 +76,4 @@ Ready for production ?
 ------------------------
 
 You **must** set `DEBUG` and `TESTING` in `conf.py` to `False`, otherwise your
-server will exposed to high risk.
+server will be exposed to high risk.
