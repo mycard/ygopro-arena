@@ -1,0 +1,13 @@
+Flask==0.10.1
+Flask-MongoKit==0.6
+Flask-Script==0.6.2
+Jinja2==2.7.1
+MarkupSafe==0.18
+PyYAML==3.10
+SQLAlchemy==0.8.2
+Werkzeug==0.9.4
+itsdangerous==0.23
+mongokit==0.9.0
+pymongo==2.6
+pytz==2013b
+simplejson==3.3.0

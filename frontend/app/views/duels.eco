@@ -28,9 +28,9 @@
     <% loser = 'x' %>
     <% end %>
     <tr>
-      <td><%= duel['dueler_' + winner] %></td>
+      <td><%= duel['duelist_' + winner] %></td>
       <td>VS</td>
-      <td><%= duel['dueler_' + loser] %></td>
+      <td><%= duel['duelist_' + loser] %></td>
       <td><%= duel.reason %></td>
       <td><%= duel['credit_' + winner] %></td>
       <td><%= duel['credit_' + loser] %></td>

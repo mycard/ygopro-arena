@@ -1,70 +1,67 @@
-import math
-
-from combat.app import db
+# -*- coding: utf-8 -*-
+from flask import current_app
 from combat.conf import (
-    RATE_CORRECTION_FACTOR,
-    COUNT_CORRECTION_FACTOR,
-    FUDICIAL_WIN_CREDIT,
-    FUDICIAL_LOSE_CREDIT,
+    K,
+    PROVISIONAL_DR,
+    PROVISIONAL_DUELS
 )
+from combat.models import Duel
 
 
-def rate_formula(d_rate, win):
-    """
-    Generate positive credit correction for decks that have low win rate,
-    vice versa.
-    """
-    ratio = math.atan(d_rate * 60 + 1) * 4 / math.pi - 1
-    if win:
-        return ratio * FUDICIAL_WIN_CREDIT * RATE_CORRECTION_FACTOR
-    return ratio * FUDICIAL_LOSE_CREDIT * RATE_CORRECTION_FACTOR
+def elo_established(x, y, win):
+    e = lambda d: float(1) / (1 + 10 ** (d / 400))
+
+    def dr(e, win):
+        s = (0, 0.5, 1)
+        return K * (s[win] - e)
+        
+    ex = e(y.rating - x.rating)
+    ey = e(x.rating - y.rating)
+    return (dr(ex, win), dr(ey, 2 - win))
 
 
-def count_formula(count, total):
-    """Generate larger bonus for less used deck"""
-    if count < 10:
-        return 0
-    addition = math.log(total) / math.log(count)
-    fudicial = COUNT_CORRECTION_FACTOR * FUDICIAL_WIN_CREDIT
-    if addition > fudicial:
-        return fudicial
-    return addition
+def elo_provisional(oneself, opponent, win):
+    drs = (-PROVISIONAL_DR, 0, PROVISIONAL_DR)
+    if not opponent.established:
+        drs = map(lambda x: x / 2, drs)
+    return (oneself.rating * oneself.total + opponent.rating +
+            drs[win]) / (oneself.total + 1) - oneself.rating
 
 
-def get_correction(deck, win):
-    """Sum all corrections"""
-    stat = db.decks.aggregate({"$group": {"_id": None,
-                                          "total": {"$sum": "$count"},
-                                          "total_win": {"$sum": "$win_count"},
-                                          "total_lose": {"$sum": "$lose_count"}
-                                          }})['result'][0]
-    total = stat['total']
-    total_win = stat['total_win']
-    total_lose = stat['total_lose']
-    if deck.count < 10 or total < 10:
-        rate = 0
-        total_rate = 0
-        d_rate = 0
-    else:
-        rate = float(deck.win_count) / float(deck.count)
-        total_rate = float(total_win) / float(total)
-        d_rate = math.fabs(rate - total_rate)
-    result = 0
-    if rate > total_rate:
-        result = result - \
-            rate_formula(d_rate, win) + count_formula(deck.count, total)
-    else:
-        result = result - \
-            rate_formula(d_rate, win) + count_formula(deck.count, total)
-    return int(round(result))
+def elo_add(x, y, win):
+    edrs = elo_established(x, y, win)
+    drs = []
+    entities = (x, y)
+    for i in xrange(0, 2):
+        entity = entities[i]
+        if entity.established:
+            dr = edrs[i]
+        else:
+            dr = elo_provisional(entity, entities[(i + 1) % 2],
+                                 abs(i * 2 - win))
+        entity.rating += dr
+        entity.save()
+        drs.append(dr)
+    current_app.logger.debug(drs)
+    return drs
 
 
-def get_credit(deck, win):
-    """Calculate actual credit of a duel"""
-    if win:
-        return int(FUDICIAL_WIN_CREDIT) + get_correction(deck, win)
-    return -int(FUDICIAL_LOSE_CREDIT) + get_correction(deck, win)
-
-
-get_winner_credit = lambda deck: get_credit(deck, True)
-get_loser_credit = lambda deck: get_credit(deck, False)
+def rank(x):
+    ranks = (
+        ('Diamond', 2400),
+        ('Platinum', 2200),
+        ('Gold', 2000),
+        ('Ruby', 1800),
+        ('Pearl', 1600),
+        ('Silver', 1400),
+        ('Bronze', 1200),
+        ('Iron', 1000),
+        ('Stone', 800),
+        ('Mud', 600),
+        ('Dust', 400),
+        ('Air', 200),
+        ('Void', 0),
+    )
+    for rank_name, rank_lower_bound in ranks:
+        if x.rating > rank_lower_bound:
+            return rank_name

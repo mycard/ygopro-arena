@@ -24,7 +24,7 @@ class Duels extends Spine.Controller
         e.preventDefault()
         @username = $(e.target).children('input').val()
         if @username
-            Duel.fetch({data: 'dueler=' + @username})
+            Duel.fetch({data: 'duelist=' + @username})
         Duel.refresh([], {clear: true})
         @navigate('/duels')
 

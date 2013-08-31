@@ -1,9 +1,8 @@
+env
 *.log
 *.pot
 *.pyc
 *.db
 *.sqlite
-*.sublime-project
-*.sublime-workspace
 node_modules
 *.ydk

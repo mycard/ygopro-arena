@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 from datetime import timedelta
 from flask import make_response, request, current_app
-from functools import update_wrapper
+from functools import update_wrapper, wraps
 
 
 def crossdomain(origin=None, methods=None, headers=None,
@@ -43,3 +44,13 @@ def crossdomain(origin=None, methods=None, headers=None,
         f.provide_automatic_options = False
         return update_wrapper(wrapped_function, f)
     return decorator
+
+
+def json_response(view):
+    @wraps(view)
+    def fake_view(*args, **kwargs):
+        rv = make_response(view(*args, **kwargs))
+        rv.mimetype = 'application/json'
+        return rv
+    return fake_view
+

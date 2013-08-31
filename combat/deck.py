@@ -15,9 +15,9 @@ session = Session()
 
 
 _CARD_TYPES = ('monster', 'spell', 'trap', 'normal', 'effect', 'fusion',
-               'ritual', 'trapmonster', 'spirit', 'union', 'gemini', 'tuner', 'synchro',
-               'token', 'quickplay', 'continuous', 'equip', 'field', 'counter', 'flip',
-               'toon', 'xyz')
+               'ritual', 'trapmonster', 'spirit', 'union', 'gemini', 'tuner',
+               'synchro', 'token', 'quickplay', 'continuous', 'equip', 'field',
+               'counter', 'flip', 'toon', 'xyz')
 
 _ATTRIBUTES = ('earth', 'water', 'fire', 'wind', 'light', 'dark', 'divine')
 
