@@ -10,7 +10,7 @@ Example steps in Ubuntu 12.04:
 $ sudo apt-get install uwsgi
 $ git clone git@github.com:mycard/mycard-combat.git /somewhere/mycard_combat
 $ cd /somewhere/mycard_combat
-$ pip install -r requirements.txt
+$ sudo pip install -r requirements.txt
 ```
 
 Configure uwsgi
