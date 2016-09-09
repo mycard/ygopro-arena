@@ -1,8 +1,8 @@
 <?php
 
-function Tureskill($A_u,$B_u,$A_o,$B_o,$usernameA,$usernameB){//ÇåËãÀúÊ·»ı·Ö
+function Tureskill($A_u,$B_u,$A_o,$B_o,$usernameA,$usernameB){//æ¸…ç®—å†å²ç§¯åˆ†
 	
-	$k = 32; //KÔ½´óÔ½±£ÊØ
+	$k = 32; //Kè¶Šå¤§è¶Šä¿å®ˆ
 	$A_u = $A_u + 5;
 	$B_u = $B_u + 5;
 	
@@ -28,9 +28,10 @@ function Tureskill($A_u,$B_u,$A_o,$B_o,$usernameA,$usernameB){//ÇåËãÀúÊ·»ı·Ö
 
 }
 
-function ClearingExp($A_exp,$B_exp,$usernameA,$usernameB){//ÇåËãÀúÊ·»ı·Ö
+
+function ClearingExp($A_exp,$B_exp,$usernameA,$usernameB){//æ¸…ç®—å†å²ç§¯åˆ†
 	
-	$k = 32; //KÔ½´óÔ½±£ÊØ
+	$k = 32; //Kè¶Šå¤§è¶Šä¿å®ˆ
 	$A_exp = $A_exp;
 	$B_exp = $B_exp + 5;
 	
@@ -51,82 +52,54 @@ function ClearingExp($A_exp,$B_exp,$usernameA,$usernameB){//ÇåËãÀúÊ·»ı·Ö
 
 }
 
-	$weight = 32; //È¨Öµ£¬ÓÎÏ·ÄÑ¶ÈÔ½´óÈ¨ÖµÔ½Ğ¡
-	
-	$differA = $ratingB - $ratingA; //¼ÆËã»ı·ÖÍæ¼ÒA²îÖµ
-	$differB = $ratingA - $ratingB; //¼ÆËã»ı·ÖÍæ¼ÒB²îÖµ
-	
-	
-	$Ea = 1/(1+(10^$differA)/400); //¼ÆËã³öÍæ¼ÒAµÄÆÚÍûµÃ·Ö
-	$Eb = 1/(1+(10^$differB)/400); //¼ÆËã³öÍæ¼ÒBµÄÆÚÍûµÃ·Ö
-	
-	if($Ea <= 0){
-		$Ea = 1 - $Eb;
-	}elseif($Ea >0){
-		$Eb = 1 - $Ea;
-	}
 
-	$EndRatingA = $ratingA + $weight * ($resultA - $Ea); //¼ÆËã³öÍæ¼ÒAÓÎÏ·½áÊøºóµÄ»ı·Ö
-	
-	$EndRatingB = $ratingB + $weight * ($resultB - $Eb); //¼ÆËã³öÍæ¼ÒBÓÎÏ·½áÊøºóµÄ»ı·Ö
-	
-	$EndRatingResult = array(
-		array(
-			'name'=>$usernameA,
-			'rating'=>$EndRatingA
-		),
-		array(
-			'name'=>$usernameB,
-			'rating'=>$EndRatingB
-		)
-	);
-	
-	return $EndRatingResult;
-}
-function QueryData($username){//²éÑ¯ÓÃ»§Êı¾İ
-	$mysql = M("rating_index");//Á¬½ÓÊı¾İ¿â
-	$data = $mysql->where('username="'.$username.'"')->find();//²éÑ¯Ä³¸öÓÃ»§µÄËùÓĞĞÅÏ¢
+function QueryData($username){//æŸ¥è¯¢ç”¨æˆ·æ•°æ®
+	$mysql = M("rating_index");//è¿æ¥æ•°æ®åº“
+	$data = $mysql->where('username="'.$username.'"')->find();//æŸ¥è¯¢æŸä¸ªç”¨æˆ·çš„æ‰€æœ‰ä¿¡æ¯
 	return $data;
 }
 
-function UpdataSkill($username,$o,$u,$games,$win,$lose,$last){//¸üĞÂÓÃ»§
+
+function UpdataSkill($username,$o,$u,$games,$win,$lose,$last){//æ›´æ–°ç”¨æˆ·
 	$mysql = M("rating_index");
-	$data['games'] = $games; //×Ü³¡Êı
-	$data['win'] = $win; //×ÜÊ¤Àû
-	$data['lose'] = $lose; //×ÜÊ§°Ü
-	$data['last'] = $last; //×îºóÒ»³¡ÊäÓ®
+	$data['games'] = $games; //æ€»åœºæ•°
+	$data['win'] = $win; //æ€»èƒœåˆ©
+	$data['lose'] = $lose; //æ€»å¤±è´¥
+	$data['last'] = $last; //æœ€åä¸€åœºè¾“èµ¢
 	$data['u'] = $u; //u
 	$data['o'] = $o; //o
-	$mysql->where('username="'.$username.'"')->save($data); //¸üĞÂÊı¾İ
+	$mysql->where('username="'.$username.'"')->save($data); //æ›´æ–°æ•°æ®
 	
 }
 
-function UpdataExp($username,$exp,$games,$win,$lose,$last){//¸üĞÂÓÃ»§
+function UpdataExp($username,$exp,$games,$win,$lose,$last){//æ›´æ–°ç”¨æˆ·
 	$mysql = M("rating_index");
-	$data['games'] = $games; //×Ü³¡Êı
-	$data['win'] = $win; //×ÜÊ¤Àû
-	$data['lose'] = $lose; //×ÜÊ§°Ü
-	$data['last'] = $last; //×îºóÒ»³¡ÊäÓ®
+	$data['games'] = $games; //æ€»åœºæ•°
+	$data['win'] = $win; //æ€»èƒœåˆ©
+	$data['lose'] = $lose; //æ€»å¤±è´¥
+	$data['last'] = $last; //æœ€åä¸€åœºè¾“èµ¢
 	$data['exp'] = $exp; //exp
-	$mysql->where('username="'.$username.'"')->save($data); //¸üĞÂÊı¾İ
+	$mysql->where('username="'.$username.'"')->save($data); //æ›´æ–°æ•°æ®
 	
 }
 
-function verifica($ak){//°²È«ÈÏÖ¤
+
+function verifica($ak){//å®‰å…¨è®¤è¯
 	$mysql = M("safe_ak");
 	$data = $mysql->where('ak="'.$ak.'"')->find();
 	if($data == NULL){
-		return 1;//Ã»ÓĞ¸Ãak
+		return 1;//æ²¡æœ‰è¯¥ak
 	}elseif($data == false){
-		return 2;//²éÑ¯³ö´í
+		return 2;//æŸ¥è¯¢å‡ºé”™
 	}else{
-		return 0;//³É¹¦
+		return 0;//æˆåŠŸ
 	}
 }
 
-function CheckUser($username){//ÅĞ¶ÏÊÇ·ñÊı¾İ±íÖĞ´æÔÚÓÃ»§Ãû
-	$mysql = M("rating_index");//Á¬½ÓÊı¾İ¿â
-	$data = $mysql->where('username="'.$username.'"')->find();//²éÑ¯Ä³¸öÓÃ»§µÄËùÓĞĞÅÏ¢
+
+function CheckUser($username){//åˆ¤æ–­æ˜¯å¦æ•°æ®è¡¨ä¸­å­˜åœ¨ç”¨æˆ·å
+	$mysql = M("rating_index");//è¿æ¥æ•°æ®åº“
+	$data = $mysql->where('username="'.$username.'"')->find();//æŸ¥è¯¢æŸä¸ªç”¨æˆ·çš„æ‰€æœ‰ä¿¡æ¯
 	if($data == NULL){
 		$new_data['username'] = $username;
 		$mysql->data($new_data)->add();
