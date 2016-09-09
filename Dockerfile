@@ -15,4 +15,3 @@ RUN docker-php-ext-install zip pgsql
 
 #RUN composer install 
 COPY . /usr/src/app 
-RUN chmod -R a+w Application/Runtime 
