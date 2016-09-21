@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2006-2014 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
@@ -8,18 +8,18 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
+namespace Behavior;
+use Think\Storage;
+/**
+ * 系统行为扩展：静态缓存写入
+ */
+class WriteHtmlCacheBehavior {
 
-
-// 应用入口文件
-
-// 检测PHP环境
-if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
-
-// 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
-define('APP_DEBUG',True);
-
-// 定义应用目录
-define('APP_PATH','./Application/');
-
-require './ThinkPHP/ThinkPHP.php';
-
+    // 行为扩展的执行入口必须是run
+    public function run(&$content){
+        if(C('HTML_CACHE_ON') && defined('HTML_FILE_NAME'))  {
+            //静态文件写入
+            Storage::put(HTML_FILE_NAME , $content,'html');
+        }
+    }
+}
