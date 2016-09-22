@@ -21,9 +21,13 @@ class QueryController extends Controller
             'all' => '0',
             'ratio' => '0',
             'violation' => '0',
+            'trueskill' => array(
+                'mean'=>'0',
+                'variance'=>'0'
+            )
         );
         
-        //TODO CheckUser 和 QueryData  永远返回false , bug ?
+        //TODO CheckUser 和 QueryData  为何在我本地环境 永远返回false , bug ?
         CheckUser($player);
         $player_data = QueryData($player); //获取玩家的数据
         
@@ -31,8 +35,12 @@ class QueryController extends Controller
         // 排名 和 胜率 之类数据库不能直接查到 或需要计算的字段, 在方法内部处理
         if($player_data != NULL){
             $EndResult['exp'] = $player_data['exp'] ;
+            $EndResult['pt'] = $player_data['pt'] ;
+            $EndResult['trueskill']['mean'] = $player_data['u'] ;
+            $EndResult['trueskill']['variance'] = $player_data['0'] ;
+
+            // 下面的数据目前没有
             $EndResult['exp_rank'] = $player_data['exp'] ;
-            $EndResult['pt'] = $player_data['exp'] ;
             $EndResult['arena_rank'] = $player_data['exp'] ;
             $EndResult['win'] = $player_data['exp'] ;
             $EndResult['lose'] = $player_data['exp'] ;
