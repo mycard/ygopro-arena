@@ -28,7 +28,7 @@ class QueryController extends Controller
         );
         
         //TODO CheckUser 和 QueryData  为何在我本地环境 永远返回false , bug ?
-        CheckUser($player);
+        //CheckUser($player); // 去掉查询时生成新用户的行为，以防止异常查询生成垃圾数据
         $player_data = QueryData($player); //获取玩家的数据
         
         //TODO 开发约定: QueryData($player); 业务层返回给Controller层 不要返回null ,可以与上面$EndResult 一样设置默认值,
