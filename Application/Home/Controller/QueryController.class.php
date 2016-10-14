@@ -29,6 +29,10 @@ class QueryController extends Controller
         
         //TODO CheckUser 和 QueryData  为何在我本地环境 永远返回false , bug ?
         //CheckUser($player); // 去掉查询时生成新用户的行为，以防止异常查询生成垃圾数据
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 6d21cc1f8e641ed549f818551ef38a289ee1bf89
         $player_data = QueryData($player); //获取玩家的数据
         
         //TODO 开发约定: QueryData($player); 业务层返回给Controller层 不要返回null ,可以与上面$EndResult 一样设置默认值,
@@ -39,6 +43,7 @@ class QueryController extends Controller
             $EndResult['trueskill']['mean'] = $player_data['u'] ;
             $EndResult['trueskill']['variance'] = $player_data['0'] ;
 
+<<<<<<< HEAD
             // 下面的数据目前没有
             $EndResult['exp_rank'] = $player_data['exp'] ;
             $EndResult['arena_rank'] = $player_data['exp'] ;
@@ -47,6 +52,20 @@ class QueryController extends Controller
             $EndResult['draw'] = $player_data['exp'] ;
             $EndResult['all'] = $player_data['exp'] ;
             $EndResult['ratio'] = $player_data['exp'] ;
+=======
+            
+            $EndResult['exp_rank'] = exp_rank($player);
+            $EndResult['arena_rank'] = arena_rank($username) ;
+            $EndResult['win'] = $player_data['win'] ;
+            $EndResult['lose'] = $player_data['lose'] ;
+			
+
+            $EndResult['draw'] = $player_data['game'] - ($player_data['win'] + $player_data['lose']) ;
+            $EndResult['all'] = $player_data['game'] ;
+			
+			// 下面的数据目前没有
+            $EndResult['ratio'] = count_ratio($player_data['win'],$player_data['lose']) ;
+>>>>>>> 6d21cc1f8e641ed549f818551ef38a289ee1bf89
             $EndResult['violation'] = $player_data['exp'] ;
         }
         

@@ -1,7 +1,7 @@
-<html>
+<?php if (!defined('THINK_PATH')) exit();?><html>
 <head>
 <meta char="utf8" />
-<title>{$web_title}</title>
+<title><?php echo ($web_title); ?></title>
 </head>
 <body>
 	<form action="./index.php?c=trueskill" method="post">
