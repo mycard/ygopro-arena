@@ -10,9 +10,9 @@ class QueryController extends Controller
         $player = I('get.username', '', 'strip_tags');//通过Post方法获取玩家名称
         //profile前端页面需要的全部数据  全部初始化为0    add by Joe 20160921
         $EndResult = array(
-            'exp' => '0',
+            'exp' => '800',
             'exp_rank' => '0',
-            'pt' => '0',
+            'pt' => '800',
             'arena_rank' => '0',
             'win' => '0',
             'lose' => '0',

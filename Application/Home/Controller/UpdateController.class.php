@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class TrueskillController extends Controller {
+class UpdateController extends Controller {
 
     public function index(){
 		
