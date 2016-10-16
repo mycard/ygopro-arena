@@ -91,10 +91,29 @@ function ClearingExp($A_exp,$B_exp,$usernameA,$usernameB,$draw){//清算历史�
 
 }
 
+function logError($content)  
+ {  
+   $logfile = './debuglog'.date('Ymd').'.txt';  
+   if(!file_exists(dirname($logfile)))  
+   {  
+     @File_Util::mkdirr(dirname($logfile));  
+   }  
+   error_log(date("[Y-m-d H:i:s]")." -[".$_SERVER['REQUEST_URI']."] :".$content."\r\n", 3,$logfile);  
+}
 
 function QueryData($username){//查询用户数据
+	$t1 = microtime(true);
 	$mysql = M("rating_index");//连接数据库
+	$t2 = microtime(true);
+	logError('QueryData函数，连接数据库rating_index表耗时:'.round($t2-$t1,3).'秒');
+	
+	
+	$t1 = microtime(true);
 	$data = $mysql->where("username='".$username."'")->find();//查询某个用户的所有信息
+	$t2 = microtime(true);
+	logError('QueryData函数，读取rating_index表耗时:'.round($t2-$t1,3).'秒');
+	
+	
 	
 	return $data;
 }
@@ -116,27 +135,44 @@ function QueryData($username){//查询用户数据
 
 
 function UpdataElo($username,$pt,$games,$win,$lose,$last){//更新用户
+		$t1 = microtime(true);
 	$mysql = M("rating_index");
+		$t2 = microtime(true);
+		logError('UpdataElo函数，连接数据库rating_index表耗时:'.round($t2-$t1,3).'秒');
+	
 	$data['pt'] = $pt; //pt 
 	$data['game'] = $games; //总场数
 	$data['win'] = $win; //总胜利
 	$data['lose'] = $lose; //总失败
 	$data['last'] = $last; //最后一场输赢 
+		$t1 = microtime(true);
 	$status = $mysql->where("username='".$username."'")->save($data); //更新数据
-	
+		$t2 = microtime(true);
+		logError('UpdataElo函数，写入数据rating_index表耗时:'.round($t2-$t1,3).'秒');
+		
 	if($status == false){
 		error_return('500');
+		logError('UpdataElo函数，写入数据rating_index出现错误，无法写入。');
 	}
+	
 }
 
 function UpdataExp($username,$exp,$games,$win,$lose,$last){//更新用户
+		$t1 = microtime(true);
 	$mysql = M("rating_index");
+		$t2 = microtime(true);
+		logError('updateexp函数，连接数据库rating_index表耗时:'.round($t2-$t1,3).'秒');
+		
 	$data['game'] = $games; //总场数
 	$data['win'] = $win; //总胜利
 	$data['lose'] = $lose; //总失败
 	$data['last'] = $last; //最后一场输赢
 	$data['exp'] = $exp; //exp
+		$t1 = microtime(true);
 	$status = $mysql->where("username='".$username."'")->save($data); //更新数据
+		$t2 = microtime(true);
+		logError('updateexp函数，写入数据rating_index表耗时:'.round($t2-$t1,3).'秒');
+		
 	if($status == false){
 		error_return('500');
 	}
@@ -156,8 +192,16 @@ function verifica($ak){//安全认证
 }
 
 function CheckUser($username){//判断是否数据表中存在用户名
+		$t1 = microtime(true);
 	$mysql = M("rating_index");//连接数据库
+		$t2 = microtime(true);
+		logError('CheckUser函数，连接数据库rating_index表耗时:'.round($t2-$t1,3).'秒');
+		
+		$t1 = microtime(true);
 	$data = $mysql->where("username='".$username."'")->find();//查询某个用户的所有信息
+		$t2 = microtime(true);
+		logError('CheckUser函数，查询数据rating_index表耗时:'.round($t2-$t1,3).'秒');
+		
 	if($data == NULL){
         $new_data = array(
 			'username' => $username,
@@ -171,7 +215,10 @@ function CheckUser($username){//判断是否数据表中存在用户名
             'u' => '0',
 			'last' => '0'
         );
+			$t1 = microtime(true);
 		$mysql->data($new_data)->add();
+			$t2 = microtime(true);
+			logError('CheckUser函数，用户不存在，写入数据rating_index表耗时:'.round($t2-$t1,3).'秒');
 	}
 }
 
@@ -186,11 +233,25 @@ function error_return($type){
 }
 
 function exp_rank($username){
+		$t1 = microtime(true);
 	$db = M("rating_index");//连接数据库
+		$t2 = microtime(true);
+		logError('exp_rank函数，连接数据库rating_index表耗时:'.round($t2-$t1,3).'秒');
+		
+		
+		
+		$t1 = microtime(true);
 	$exp_numb = $db->where("username='".$username."'")->getField('exp');
-	
+		$t2 = microtime(true);
+		logError('exp_rank函数，获取用户exp，rating_index表耗时:'.round($t2-$t1,3).'秒');
+		
+		
+		$t1 = microtime(true);
 	$exp_select = $db->where("exp>='".$exp_numb."'")->order("exp DESC,username ASC")->getField('username,exp');
-
+		$t2 = microtime(true);
+		logError('exp_rank函数，获取exp排序表，rating_index表耗时:'.round($t2-$t1,3).'秒');
+	
+		$t1 = microtime(true);
 	foreach ($exp_select as $k=>$v) {
 		  if($k == $username){
 			  	if($i == NULL){
@@ -203,6 +264,8 @@ function exp_rank($username){
 			  
 		  $i++;
 	}
+		$t2 = microtime(true);
+		logError('exp_rank函数，计算排名，rating_index表耗时:'.round($t2-$t1,3).'秒');
 
 }
 
@@ -214,7 +277,12 @@ function arena_rank($username){
 
 	foreach ($exp_select as $k=>$v) {
 		  if($k == $username){
-			  return $i;
+			  	if($i == NULL){
+					$i = 1;
+					return $i;
+				}else{
+				return $i;
+				}
 			  }
 			  
 		  $i++;
