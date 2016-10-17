@@ -93,7 +93,7 @@ function ClearingExp($A_exp,$B_exp,$usernameA,$usernameB,$draw){//清算历史�
 
 function logError($content)  
  {  
-   $logfile = './Application/debuglog'.date('Ymd').'.txt';  
+   $logfile = './Application/Runtime/debuglog'.date('Ymd').'.txt';  
    if(!file_exists(dirname($logfile)))  
    {  
      @File_Util::mkdirr(dirname($logfile));  
@@ -271,12 +271,12 @@ function exp_rank($username){
 
 function arena_rank($username){
 	$db = M("rating_index");//连接数据库
-	$exp_numb = $db->where("username='".$username."'")->getField('pt');
+	$pt_numb = $db->where("username='".$username."'")->getField('pt');
 	
-	$exp_select = $db->where("pt>='".$exp_numb."'")->order("pt DESC,username ASC")->getField('username,pt');
+	$pt_select = $db->where("pt>='".$exp_numb."'")->order("pt DESC,username ASC")->getField('username,pt');
 
-	foreach ($exp_select as $k=>$v) {
-		  if($k == $username){
+	foreach ($pt_select as $kpt=>$vpt) {
+		  if($kpt == $username){
 			  	if($i == NULL){
 					$i = 1;
 					return $i;
