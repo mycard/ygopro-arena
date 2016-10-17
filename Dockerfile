@@ -18,3 +18,4 @@ COPY . /usr/src/app
 
 RUN mkdir Application/Runtime
 RUN chmod 777 Application/Runtime
+RUN chmod 777 Application

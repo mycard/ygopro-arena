@@ -93,7 +93,7 @@ function ClearingExp($A_exp,$B_exp,$usernameA,$usernameB,$draw){//清算历史�
 
 function logError($content)  
  {  
-   $logfile = './debuglog'.date('Ymd').'.txt';  
+   $logfile = './Application/debuglog'.date('Ymd').'.txt';  
    if(!file_exists(dirname($logfile)))  
    {  
      @File_Util::mkdirr(dirname($logfile));  

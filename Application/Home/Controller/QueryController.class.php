@@ -7,7 +7,7 @@ class QueryController extends Controller
 {
     public function index()
     {
-        $player = I('get.username', '', 'strip_tags');//通过Post方法获取玩家名称
+        $player = I('get.username');//通过Post方法获取玩家名称
         //profile前端页面需要的全部数据  全部初始化为0    add by Joe 20160921
         $EndResult = array(
             'exp' => '800',
