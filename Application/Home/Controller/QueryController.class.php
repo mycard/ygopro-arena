@@ -7,7 +7,8 @@ class QueryController extends Controller
 {
     public function index()
     {
-        $player = I('get.username', '', 'strip_tags');//通过Post方法获取玩家名称
+		header("Content-type: text/html; charset=utf-8");
+        $player = I('get.username');
         $player = urldecode($player);
 
         //profile前端页面需要的全部数据  全部初始化为0    add by Joe 20160921

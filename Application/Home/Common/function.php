@@ -109,7 +109,7 @@ function QueryData($username){//查询用户数据
 	
 	
 	$t1 = microtime(true);
-	$data = $mysql->where("username='".$username."'")->find();//查询某个用户的所有信息
+	$data = $mysql->where("username=N'".$username."'")->find();//查询某个用户的所有信息
 	$t2 = microtime(true);
 	logError('QueryData函数，读取rating_index表耗时:'.round($t2-$t1,3).'秒');
 	

@@ -66,6 +66,13 @@ class UpdateController extends Controller {
 								$playerA['win'],$playerA['lose'] + 1,$playerAresult);
 					UpdataElo($playerBname,$ratingA_B[1]['pt'],$playerB['game'] + 1,
 								$playerB['win'] + 1,$playerB['lose'],$playerBresult);	
+								
+					$ratingA_B_Exp = ClearingExp($playerA['exp'],$playerB['exp'],$playerAname,$playerBname,$draw);
+					
+					UpdataExp($playerAname,$ratingA_B_Exp[0]['exp'],$playerA['game'] + 1,
+									$playerA['win'],$playerA['lose'] + 1,$playerAresult);	
+					UpdataExp($playerBname,$ratingA_B_Exp[1]['exp'],$playerB['game'] + 1,
+									$playerB['win'] + 1,$playerB['lose'],$playerBresult);
 					
 				}else{//平局
 					$ratingA_B = ClearingRating($playerA['pt'],$playerB['pt'],'1','1',$playerAname,$playerBname); //清算ELO积分
@@ -73,7 +80,15 @@ class UpdateController extends Controller {
 								$playerA['win'],$playerA['lose'],'1');
 					UpdataElo($playerBname,$ratingA_B[1]['pt'],$playerB['game'] + 1,
 								$playerB['win'],$playerB['lose'],'1');
+					
+					$ratingA_B_Exp = ClearingExp($playerA['exp'],$playerB['exp'],$playerAname,$playerBname,$draw);
+					UpdataExp($playerAname,$ratingA_B_Exp[0]['exp'],$playerA['game'] + 1,
+									$playerA['win'],$playerA['lose'],$playerAresult);
+					UpdataExp($playerBname,$ratingA_B_Exp[1]['exp'],$playerB['game'] + 1,
+									$playerB['win'],$playerB['lose'],$playerBresult);
+
 				}
+			
 					
 				
 /* 				
