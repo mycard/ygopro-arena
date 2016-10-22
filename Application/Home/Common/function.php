@@ -98,7 +98,7 @@ function logError($content)
    {  
      @File_Util::mkdirr(dirname($logfile));  
    }  
-   error_log(date("[Y-m-d H:i:s]")." -[".$_SERVER['REQUEST_URI']."] :".$content."\r\n", 3,$logfile);  
+   error_log(date("[Y-m-d H:i:s]")." -[".$_SERVER['REQUEST_URI']."] :".$content."\r\n\r\n", 3,$logfile);  
 }
 
 function QueryData($username){//查询用户数据
@@ -192,15 +192,8 @@ function verifica($ak){//安全认证
 }
 
 function CheckUser($username){//判断是否数据表中存在用户名
-		$t1 = microtime(true);
 	$mysql = M("rating_index");//连接数据库
-		$t2 = microtime(true);
-		logError('CheckUser函数，连接数据库rating_index表耗时:'.round($t2-$t1,3).'秒');
-		
-		$t1 = microtime(true);
 	$data = $mysql->where("username='".$username."'")->find();//查询某个用户的所有信息
-		$t2 = microtime(true);
-		logError('CheckUser函数，查询数据rating_index表耗时:'.round($t2-$t1,3).'秒');
 		
 	if($data == NULL){
         $new_data = array(
@@ -233,25 +226,9 @@ function error_return($type){
 }
 
 function exp_rank($username){
-		$t1 = microtime(true);
 	$db = M("rating_index");//连接数据库
-		$t2 = microtime(true);
-		logError('exp_rank函数，连接数据库rating_index表耗时:'.round($t2-$t1,3).'秒');
-		
-		
-		
-		$t1 = microtime(true);
 	$exp_numb = $db->where("username='".$username."'")->getField('exp');
-		$t2 = microtime(true);
-		logError('exp_rank函数，获取用户exp，rating_index表耗时:'.round($t2-$t1,3).'秒');
-		
-		
-		$t1 = microtime(true);
 	$exp_select = $db->where("exp>='".$exp_numb."'")->order("exp DESC,username ASC")->getField('username,exp');
-		$t2 = microtime(true);
-		logError('exp_rank函数，获取exp排序表，rating_index表耗时:'.round($t2-$t1,3).'秒');
-	
-		$t1 = microtime(true);
 	foreach ($exp_select as $k=>$v) {
 		  if($k == $username){
 			  	if($i == NULL){
@@ -264,16 +241,13 @@ function exp_rank($username){
 			  
 		  $i++;
 	}
-		$t2 = microtime(true);
-		logError('exp_rank函数，计算排名，rating_index表耗时:'.round($t2-$t1,3).'秒');
-
 }
 
 function arena_rank($username){
 	$db = M("rating_index");//连接数据库
 	$pt_numb = $db->where("username='".$username."'")->getField('pt');
 	
-	$pt_select = $db->where("pt>='".$exp_numb."'")->order("pt DESC,username ASC")->getField('username,pt');
+	$pt_select = $db->where("pt>='".$pt_numb."'")->order("pt DESC,username ASC")->getField('username,pt');
 
 	foreach ($pt_select as $kpt=>$vpt) {
 		  if($kpt == $username){
